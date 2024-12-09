@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "run": "node src/stringCalculator.js"
+    "dev": "node src/stringCalculator.js"
   },
   "repository": {
     "type": "git",
