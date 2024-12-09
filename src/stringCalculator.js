@@ -4,6 +4,9 @@ function add(numbers) {
         return 0;
     }
 
+    // Replace new lines with commas
+    numbers = numbers.replace(/\n/g, ',');
+
     if (numbers.includes(',')) {
         const nums = numbers.split(',').map(Number);
         const sum = nums.reduce((acc, curr) => acc + curr, 0);
@@ -19,4 +22,5 @@ function add(numbers) {
 // Export the function to make it available for imports in other files
 module.exports = add;
 
-console.log(add("1,4,8"))
+console.log(add(`1,
+4,8`))
