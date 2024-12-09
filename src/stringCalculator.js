@@ -1,33 +1,33 @@
 function add(numbers) {
-    if (numbers == "") {
-        console.log("Input is an empty string, returning 0");
+    // If the input is an empty string, return 0
+    if (numbers === "") {
         return 0;
     }
 
     let delimiter = /,|\n/;  // Default delimiter is comma or new line
+
+    // If the string starts with "//", extract the custom delimiter
     if (numbers.startsWith('//')) {
-        // Match the first custom delimiter line
         const delimiterMatch = numbers.match(/^\/\/(.+)\n/);
         if (delimiterMatch) {
-            delimiter = delimiterMatch[1]; // Extract custom delimiter
-            numbers = numbers.slice(delimiterMatch[0].length); // Remove delimiter line
-            console.log(`Custom delimiter detected: ${delimiter}`);
+            delimiter = delimiterMatch[1]; // Extract the custom delimiter
+            numbers = numbers.slice(delimiterMatch[0].length); // Remove the delimiter line
         }
     }
 
-    // Split the string by the detected delimiter(s)
-    const nums = numbers.split(new RegExp(`[${delimiter}\n]`)).map(num => num.trim()).filter(Boolean).map(Number);
+    // Split by the detected delimiter(s)
+    const nums = numbers.split(new RegExp(`[${delimiter}\n]`)).map(num => parseInt(num));
+
+    // Ignore numbers greater than 1000
+    const validNums = nums.filter(num => num <= 1000);
 
     // Handle negative numbers
-    const negatives = nums.filter(num => num < 0);
+    const negatives = validNums.filter(num => num < 0);
     if (negatives.length > 0) {
-        console.log(`Negative numbers detected: ${negatives}`);
         throw new Error(`Negatives not allowed: ${negatives.join(', ')}`);
     }
 
-    // Calculate the sum of numbers
-    const sum = nums.reduce((acc, curr) => acc + curr, 0);
-    console.log(`Numbers: ${nums}, Sum: ${sum}`);
+    const sum = validNums.reduce((acc, curr) => acc + curr, 0);
     return sum;
 }
 
