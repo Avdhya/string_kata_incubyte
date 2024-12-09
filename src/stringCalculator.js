@@ -8,9 +8,9 @@ function add(numbers) {
 
     // If the string starts with "//", extract the custom delimiter
     if (numbers.startsWith('//')) {
-        const delimiterMatch = numbers.match(/^\/\/(.+)\n/);
+        const delimiterMatch = numbers.match(/^\/\/(\[?.+\]?)\n/); // This handles both [custom] and simple delimiters
         if (delimiterMatch) {
-            delimiter = delimiterMatch[1]; // Extract the custom delimiter
+            delimiter = delimiterMatch[1].replace(/[\[\]]/g, ''); // Remove square brackets if present
             numbers = numbers.slice(delimiterMatch[0].length); // Remove the delimiter line
         }
     }
@@ -34,6 +34,7 @@ function add(numbers) {
 // Export the function to make it available for imports in other files
 module.exports = add;
 
+
 console.log(add(`
 `))
 
@@ -45,9 +46,11 @@ console.log(add(`10,
             20,
     30`))
 
-console.log(add(`//;
+console.log(add(`//; //;
     1;
     2;
+    //;
+    *
     3`));
 
 console.log(add(`   1,  2,  3`));
