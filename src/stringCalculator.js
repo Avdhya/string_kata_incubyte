@@ -19,4 +19,4 @@ function add(numbers) {
 // Export the function to make it available for imports in other files
 module.exports = add;
 
-console.log(add("1,4"))
+console.log(add("1,4,8"))
