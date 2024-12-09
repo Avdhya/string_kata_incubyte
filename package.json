@@ -4,7 +4,8 @@
   "description": "This project implements the String Calculator Kata using Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "run": "node src/stringCalculator.js"
   },
   "repository": {
     "type": "git",
