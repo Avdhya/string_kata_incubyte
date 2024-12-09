@@ -23,4 +23,5 @@ function add(numbers) {
 module.exports = add;
 
 console.log(add(`1,
-4,8`))
+4,
+8`))
